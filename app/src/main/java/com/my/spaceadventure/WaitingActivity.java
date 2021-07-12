@@ -81,13 +81,12 @@ public class WaitingActivity extends AppCompatActivity {
                                             public void onComplete(@NonNull Task<Boolean> task) {
                                                 try {
                                                     String gameString = firebaseRemoteConfig.getValue("data").asString();
-                                                    JSONObject webGame = new JSONObject(gameString);
                                                     JSONObject jsonObject = new JSONObject(conversionData);
                                                     if (jsonObject.optString("af_status").equals("Non-organic")) {
                                                         String campaign = jsonObject.optString("campaign");
                                                         String[] splitsCampaign = campaign.split("_");
                                                         OneSignal.sendTag("user_id", splitsCampaign[2]);
-                                                        String mainUrl = webGame.optString("data") + "?naming=" + campaign + "&apps_uuid=" + AppsFlyerLib.getInstance().getAppsFlyerUID(getApplicationContext()) + "&adv_id=" + jsonObject.optString("ad_id");
+                                                        String mainUrl = gameString + "?naming=" + campaign + "&apps_uuid=" + AppsFlyerLib.getInstance().getAppsFlyerUID(getApplicationContext()) + "&adv_id=" + jsonObject.optString("ad_id");
                                                         setGameUrl(mainUrl);
                                                         startActivity(new Intent(WaitingActivity.this, SiteActivity.class));
                                                         finish();
@@ -101,7 +100,7 @@ public class WaitingActivity extends AppCompatActivity {
                                                             startActivity(new Intent(WaitingActivity.this, MainActivity.class));
                                                             finish();
                                                         } else {
-                                                            String mainUrl = webGame.optString("data") + "?naming=null&apps_uuid=" + AppsFlyerLib.getInstance().getAppsFlyerUID(getApplicationContext()) + "&adv_id=null";
+                                                            String mainUrl = gameString + "?naming=null&apps_uuid=" + AppsFlyerLib.getInstance().getAppsFlyerUID(getApplicationContext()) + "&adv_id=null";
                                                             setGameUrl(mainUrl);
                                                             startActivity(new Intent(WaitingActivity.this, SiteActivity.class));
                                                             finish();
