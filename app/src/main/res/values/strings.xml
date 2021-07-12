@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">SpaceAdventure</string>
+    <string name="result_failed">SpaceAdventure</string>
+    <string name="result_failed_why">SpaceAdventure</string>
+    <string name="ok_button">Ok</string>
+    <string name="scan">Scan</string>
+    <string name="zachislenie">Message</string>
+    <string name="allert">Alert</string>
+    <string name="facebook_app_id">1956322104530286</string>
+</resources>
