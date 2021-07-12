@@ -9,6 +9,7 @@ import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -33,6 +34,7 @@ public class SiteActivity extends AppCompatActivity {
 
     private ValueCallback<Uri[]> callback;
     private String photoPathString;
+    SharedPreferences spref;
 
     private WebView siteView;
     private ProgressBar progressBar;
@@ -41,11 +43,7 @@ public class SiteActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_site);
-
-        WaitingActivity wa = new WaitingActivity();
-
-        String url = wa.getGameUrl();
-
+        spref = getSharedPreferences("Settings", MODE_PRIVATE);
         setViewSettings();
         siteView.setWebViewClient(new WebViewClient() {
             @Override
@@ -81,9 +79,9 @@ public class SiteActivity extends AppCompatActivity {
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
-                if (wa.isFirstRef()) {
-                    wa.setGameUrl(url);
-                    wa.setFirstRef(false);
+                if (isFirstRef()) {
+                    setGameUrl(url);
+                    setFirstRef(false);
                     CookieManager.getInstance().flush();
                 }
                 CookieManager.getInstance().flush();
@@ -117,11 +115,8 @@ public class SiteActivity extends AppCompatActivity {
                     Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                     if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
                         File photoFile = null;
-                        try {
-                            photoFile = createImageFile();
-                            takePictureIntent.putExtra("PhotoPath", photoPathString);
-                        } catch (IOException ex) {
-                        }
+                        photoFile = createImageFile();
+                        takePictureIntent.putExtra("PhotoPath", photoPathString);
                         if (photoFile != null) {
                             photoPathString = "file:" + photoFile.getAbsolutePath();
                             takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
@@ -150,7 +145,7 @@ public class SiteActivity extends AppCompatActivity {
                 return false;
             }
 
-            private File createImageFile() throws IOException {
+            private File createImageFile() {
                 File imageStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "DirectoryNameHere");
                 if (!imageStorageDir.exists())
                     imageStorageDir.mkdirs();
@@ -173,8 +168,8 @@ public class SiteActivity extends AppCompatActivity {
         progressBar.setFitsSystemWindows(true);
 
 
-        if (!wa.gameUrl.isEmpty()) {
-            siteView.loadUrl(url);
+        if (!getGameUrl().isEmpty()) {
+            siteView.loadUrl(getGameUrl());
         } else {
             startActivity(new Intent(SiteActivity.this, MainActivity.class));
         }
@@ -217,6 +212,11 @@ public class SiteActivity extends AppCompatActivity {
     }
 
     public void setViewSettings() {
+        siteView.getSettings().setLoadWithOverviewMode(true);
+        siteView.getSettings().setUseWideViewPort(true);
+        siteView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
+        siteView.getSettings().setPluginState(WebSettings.PluginState.ON);
+        siteView.getSettings().setSavePassword(true);
         siteView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
         siteView.requestFocus(View.FOCUS_DOWN);
         siteView.setLayerType(View.LAYER_TYPE_HARDWARE, null);
@@ -236,11 +236,6 @@ public class SiteActivity extends AppCompatActivity {
         cookieManager.acceptCookie();
         cookieManager.setAcceptThirdPartyCookies(siteView, true);
         cookieManager.flush();
-        siteView.getSettings().setLoadWithOverviewMode(true);
-        siteView.getSettings().setUseWideViewPort(true);
-        siteView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
-        siteView.getSettings().setPluginState(WebSettings.PluginState.ON);
-        siteView.getSettings().setSavePassword(true);
     }
 
     @Override
@@ -248,7 +243,40 @@ public class SiteActivity extends AppCompatActivity {
         if(siteView.canGoBack()){
             siteView.goBack();
         } else{
+            CookieManager.getInstance().flush();
             finish();
         }
+    }
+
+    public int isFirstGame() {
+        return spref.getInt("first_game", 0);
+    }
+
+    public void setFirstGame(int firstGame) {
+        spref.edit().putInt("first_game", firstGame).apply();
+    }
+
+    public boolean isFirstAppsFlyer() {
+        return spref.getBoolean("first_appsflyer", true);
+    }
+
+    public void setFirstAppsFlyer(boolean firstAppsFlyer) {
+        spref.edit().putBoolean("first_appsflyer", firstAppsFlyer).apply();
+    }
+
+    public boolean isFirstRef() {
+        return spref.getBoolean("first_ref", true);
+    }
+
+    public void setFirstRef(boolean firstRef) {
+        spref.edit().putBoolean("first_ref", firstRef).apply();
+    }
+
+    public String getGameUrl() {
+        return spref.getString("url", "");
+    }
+
+    public void setGameUrl(String gameUrl) {
+        spref.edit().putString("url", gameUrl).apply();
     }
 }
