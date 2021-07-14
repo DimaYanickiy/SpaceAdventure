@@ -28,6 +28,7 @@
             android:layout_gravity="center"
             android:fontFamily="@font/amatic_sc"
             android:text="Scan Barcode"
+            android:textColor="@color/black"
             android:textSize="34sp"
             android:textStyle="bold" />
     </FrameLayout>
