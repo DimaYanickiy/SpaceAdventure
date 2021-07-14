@@ -1,4 +1,4 @@
-package com.my.spaceadventure;
+package com.adventure.space;
 
 import org.junit.Test;
 

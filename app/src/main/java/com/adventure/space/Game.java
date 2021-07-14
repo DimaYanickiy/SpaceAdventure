@@ -1,4 +1,4 @@
-package com.my.spaceadventure;
+package com.adventure.space;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,7 +16,7 @@ public class Game extends AppCompatActivity {
 
     private static final String SAVE_MONEY = "saving_money";
     ImageView i1, i2, i3, i4, i5, i6, i7, i8, i9, i10, i11, i12, i13, i14, i15;
-    ImageButton btn5, btn10;
+    ImageButton btn5, btn10, btn_back;
     TextView tikets;
 
     SharedPreferences sp;
@@ -49,6 +49,7 @@ public class Game extends AppCompatActivity {
 
         btn5 = (ImageButton)findViewById(R.id.play5);
         btn10 = (ImageButton)findViewById(R.id.play10);
+        btn_back = (ImageButton)findViewById(R.id.btn_back);
 
         tikets = (TextView)findViewById(R.id.tikets);
         loadMoney();
@@ -74,6 +75,15 @@ public class Game extends AppCompatActivity {
                     money-=15;
                     tiketsToPlay = 15;
                     tikets.setText("Tikets: " + Integer.toString(money));
+                }
+            }
+        });
+
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!wasRunning){
+                    onBackPressed();
                 }
             }
         });
@@ -194,5 +204,11 @@ public class Game extends AppCompatActivity {
     protected void onDestroy() {
         saveMoney();
         super.onDestroy();
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        super.onBackPressed();
     }
 }

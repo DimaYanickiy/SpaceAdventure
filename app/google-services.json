@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "300036803649",
-    "project_id": "space-advent",
-    "storage_bucket": "space-advent.appspot.com"
+    "project_number": "474326899996",
+    "project_id": "space-adventure-e6115",
+    "storage_bucket": "space-adventure-e6115.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:300036803649:android:b1f55a1af25f0e8a17cac0",
+        "mobilesdk_app_id": "1:474326899996:android:2f2c8699083d3fb805aed9",
         "android_client_info": {
-          "package_name": "com.example.spaceadventure"
+          "package_name": "com.adventure.space"
         }
       },
       "oauth_client": [
         {
-          "client_id": "300036803649-jh180qralcljq1r5qc7rhh5k27ojuip9.apps.googleusercontent.com",
+          "client_id": "474326899996-39cc7ivk79rgvmgf0f22t8utmmfaunmm.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCFx0_oYAvAYTNsnxPg_pdqfNLPXDW0Pjw"
+          "current_key": "AIzaSyAVclN8h3c0AhgulpQAXUB_kGRtSuPwqqY"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "300036803649-jh180qralcljq1r5qc7rhh5k27ojuip9.apps.googleusercontent.com",
+              "client_id": "474326899996-39cc7ivk79rgvmgf0f22t8utmmfaunmm.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

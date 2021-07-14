@@ -7,115 +7,121 @@
     android:background="@drawable/back"
     tools:context=".MainActivity" >
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="120dp"
-        android:fontFamily="@font/amatic_sc"
-        android:text="Spase Adventure"
-        android:textColor="@color/white"
-        android:textSize="60sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <FrameLayout
-        android:id="@+id/frameLayout"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
-
-        <ImageButton
-            android:id="@+id/play"
-            android:layout_width="200dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="5dp"
-            android:background="@color/cardview_shadow_end_color"
-            android:scaleType="fitXY"
-            app:srcCompat="@drawable/ramka" />
-
-        <TextView
-            android:id="@+id/tikets_5"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="5dp"
-            android:fontFamily="@font/amatic_sc"
-            android:gravity="center"
-            android:text="Play"
-            android:textSize="34sp"
-            android:textStyle="bold" />
-    </FrameLayout>
-
-    <FrameLayout
-        android:id="@+id/frameLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="240dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frameLayout"
-        app:layout_constraintVertical_bias="0.046">
-
-        <ImageButton
-            android:id="@+id/leave"
-            android:layout_width="200dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
-            android:background="@color/cardview_shadow_end_color"
-            android:scaleType="fitXY"
-            app:srcCompat="@drawable/ramka" />
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/tikets_10"
-            android:layout_width="wrap_content"
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/amatic_sc"
-            android:text="Leave"
-            android:textSize="34sp"
-            android:textStyle="bold" />
-
-    </FrameLayout>
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="84dp"
-        app:layout_constraintBottom_toTopOf="@+id/frameLayout2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frameLayout"
-        app:layout_constraintVertical_bias="0.0">
-
-        <ImageButton
-            android:id="@+id/btn_scanner"
-            android:layout_width="200dp"
-            android:layout_height="50dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
-            android:background="@color/cardview_shadow_end_color"
-            android:scaleType="fitXY"
-            app:srcCompat="@drawable/ramka" />
+            android:contentDescription="game_name"
+            android:fontFamily="@font/amatic_sc"
+            android:gravity="center"
+            android:text="Spase Adventure"
+            android:textColor="@color/white"
+            android:textSize="48sp" />
 
-        <TextView
-            android:id="@+id/btn_scan"
+        <FrameLayout
+            android:id="@+id/frameLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/amatic_sc"
-            android:text="Scan Barcode"
-            android:textSize="34sp"
-            android:textStyle="bold" />
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="20dp">
 
-    </FrameLayout>
+            <ImageButton
+                android:id="@+id/play"
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:background="@color/cardview_shadow_end_color"
+                android:contentDescription="btn_play"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/ramka" />
+
+            <TextView
+                android:id="@+id/tikets_5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/amatic_sc"
+                android:text="Play"
+                android:textColor="@color/purple_700"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="20dp">
+
+            <ImageButton
+                android:id="@+id/btn_scanner"
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:background="@color/cardview_shadow_end_color"
+                android:contentDescription="btn_scan"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/ramka" />
+
+            <TextView
+                android:id="@+id/btn_scan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/amatic_sc"
+                android:text="Scan Barcode"
+                android:textColor="@color/purple_700"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frameLayout2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="20dp">
+
+            <ImageButton
+                android:id="@+id/leave"
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:background="@color/cardview_shadow_end_color"
+                android:contentDescription="btn_leave"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/ramka" />
+
+            <TextView
+                android:id="@+id/tikets_10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/amatic_sc"
+                android:text="Leave"
+                android:textColor="@color/purple_700"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+
+        </FrameLayout>
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

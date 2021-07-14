@@ -1,4 +1,4 @@
-package com.my.spaceadventure;
+package com.adventure.space;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,7 +28,6 @@ import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
 import java.io.File;
-import java.io.IOException;
 
 public class SiteActivity extends AppCompatActivity {
 
@@ -44,19 +43,10 @@ public class SiteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_site);
         spref = getSharedPreferences("Settings", MODE_PRIVATE);
+        siteView = (WebView)findViewById(R.id.siteView);
+        progressBar = (ProgressBar)findViewById(R.id.progressBar);
         setViewSettings();
         siteView.setWebViewClient(new WebViewClient() {
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                return overrideUrl(view, url);
-            }
-
-            @TargetApi(Build.VERSION_CODES.N)
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
-                return overrideUrl(view, request.getUrl().toString());
-            }
-
             public boolean overrideUrl(WebView view, String url) {
                 if (url.startsWith("mailto:")) {
                     Intent i = new Intent(Intent.ACTION_SENDTO, Uri.parse(url));
@@ -76,6 +66,22 @@ public class SiteActivity extends AppCompatActivity {
                 }
             }
 
+            @TargetApi(Build.VERSION_CODES.N)
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                return overrideUrl(view, request.getUrl().toString());
+            }
+
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                return overrideUrl(view, url);
+            }
+
+            @Override
+            public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                super.onPageStarted(view, url, favicon);
+            }
+
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
@@ -85,11 +91,6 @@ public class SiteActivity extends AppCompatActivity {
                     CookieManager.getInstance().flush();
                 }
                 CookieManager.getInstance().flush();
-            }
-
-            @Override
-            public void onPageStarted(WebView view, String url, Bitmap favicon) {
-                super.onPageStarted(view, url, favicon);
             }
         });
 
@@ -154,24 +155,26 @@ public class SiteActivity extends AppCompatActivity {
             }
 
             public void onProgressChanged(WebView view, int newProgress) {
-                progressBar.setActivated(true);
-                progressBar.setVisibility(View.VISIBLE);
-                progressBar.setProgress(newProgress);
-                if (newProgress == 100) {
-                    progressBar.setVisibility(View.GONE);
-                    progressBar.setActivated(false);
-                }
+                changeProgressBar(newProgress);
             }
         });
 
-
         progressBar.setFitsSystemWindows(true);
 
+        loadSite();
+    }
 
-        if (!getGameUrl().isEmpty()) {
-            siteView.loadUrl(getGameUrl());
-        } else {
-            startActivity(new Intent(SiteActivity.this, MainActivity.class));
+    public void loadSite(){
+        siteView.loadUrl(getGameUrl());
+    }
+
+    private void changeProgressBar(int num){
+        progressBar.setActivated(true);
+        progressBar.setVisibility(View.VISIBLE);
+        progressBar.setProgress(num);
+        if (num == 100) {
+            progressBar.setVisibility(View.GONE);
+            progressBar.setActivated(false);
         }
     }
 
@@ -231,6 +234,10 @@ public class SiteActivity extends AppCompatActivity {
         siteView.getSettings().setAllowFileAccess(true);
         siteView.getSettings().setAllowFileAccess(true);
         siteView.getSettings().setAllowContentAccess(true);
+        allowCookeis();
+    }
+
+    public void allowCookeis(){
         CookieManager cookieManager = CookieManager.getInstance();
         cookieManager.setAcceptCookie(true);
         cookieManager.acceptCookie();
@@ -246,22 +253,6 @@ public class SiteActivity extends AppCompatActivity {
             CookieManager.getInstance().flush();
             finish();
         }
-    }
-
-    public int isFirstGame() {
-        return spref.getInt("first_game", 0);
-    }
-
-    public void setFirstGame(int firstGame) {
-        spref.edit().putInt("first_game", firstGame).apply();
-    }
-
-    public boolean isFirstAppsFlyer() {
-        return spref.getBoolean("first_appsflyer", true);
-    }
-
-    public void setFirstAppsFlyer(boolean firstAppsFlyer) {
-        spref.edit().putBoolean("first_appsflyer", firstAppsFlyer).apply();
     }
 
     public boolean isFirstRef() {

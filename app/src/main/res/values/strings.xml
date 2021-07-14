@@ -6,5 +6,7 @@
     <string name="scan">Scan</string>
     <string name="zachislenie">Message</string>
     <string name="allert">Alert</string>
-    <string name="facebook_app_id">1956322104530286</string>
+    <string name="facebook_app_id">498335511235267</string>
+    <string name="one_signal_app_id">f5d11825-ba78-45d4-a581-38c2d8acc18d</string>
+    <string name="af_dev_key">txxWFFPc2eVYxzXy4wQtkb</string>
 </resources>

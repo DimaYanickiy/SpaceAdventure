@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="@drawable/back"
     android:orientation="vertical"
     tools:context=".Game">
@@ -11,17 +11,15 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="328dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
         android:gravity="center"
         android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.8"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:padding="15dp">
 
         <LinearLayout
-            android:layout_width="400dp"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:background="@drawable/ramka"
             android:orientation="vertical"
             android:paddingLeft="2dp"
@@ -31,7 +29,8 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -82,7 +81,8 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -133,7 +133,8 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -189,14 +190,29 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_weight="1"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
+        <TextView
+            android:id="@+id/tikets"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:contentDescription="tikets"
+            android:fontFamily="@font/amatic_sc"
+            android:text="Tikets: 10000"
+            android:textColor="@color/white"
+            android:textSize="50sp" />
+
         <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp">
 
             <ImageButton
                 android:id="@+id/play5"
@@ -205,6 +221,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="5dp"
                 android:background="@color/cardview_shadow_end_color"
+                android:contentDescription="5_tikets"
                 android:scaleType="fitXY"
                 app:srcCompat="@drawable/ramka" />
 
@@ -212,17 +229,20 @@
                 android:id="@+id/tikets_5"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:fontFamily="@font/amatic_sc"
-                android:gravity="center"
                 android:text="5 Tikets"
+                android:textColor="@color/purple_700"
                 android:textSize="34sp"
                 android:textStyle="bold" />
         </FrameLayout>
 
         <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp">
 
             <ImageButton
                 android:id="@+id/play10"
@@ -231,6 +251,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="20dp"
                 android:background="@color/cardview_shadow_end_color"
+                android:contentDescription="15_tickets"
                 android:scaleType="fitXY"
                 app:srcCompat="@drawable/ramka" />
 
@@ -242,20 +263,38 @@
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/amatic_sc"
                 android:text="15 Tikets"
+                android:textColor="@color/purple_700"
+                android:textSize="34sp"
+                android:textStyle="bold" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="20dp">
+
+            <ImageButton
+                android:id="@+id/btn_back"
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:background="@color/cardview_shadow_end_color"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/ramka" />
+
+            <TextView
+                android:id="@+id/textView_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/amatic_sc"
+                android:text="Back"
+                android:textColor="@color/purple_700"
                 android:textSize="34sp"
                 android:textStyle="bold" />
         </FrameLayout>
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/tikets"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/amatic_sc"
-        android:gravity="center"
-        android:text="Tikets: 10000"
-        android:textColor="@color/white"
-        android:textSize="60sp" />
 </LinearLayout>

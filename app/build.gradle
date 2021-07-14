@@ -9,11 +9,11 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.example.spaceadventure"
+        applicationId "com.adventure.space"
         minSdkVersion 24
         targetSdkVersion 30
         versionCode 1
-        versionName "1.003"
+        versionName "1.183"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
