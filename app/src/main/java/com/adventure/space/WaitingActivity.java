@@ -86,8 +86,8 @@ public class WaitingActivity extends AppCompatActivity {
                                         if (jsonObject.optString("af_status").equals("Non-organic")) {
                                             String campaign = jsonObject.optString("campaign");
                                             if (campaign.isEmpty() || campaign.equals("null")) campaign = jsonObject.optString("c");
+                                            String[] splitsCampaign = campaign.split("_");
                                             try{
-                                                String[] splitsCampaign = campaign.split("_");
                                                 OneSignal.sendTag("user_id", splitsCampaign[2]);
                                             }catch(Exception e){
 
